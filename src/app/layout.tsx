@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import {ClerkProvider, RedirectToSignIn, SignedIn, SignedOut} from "@clerk/nextjs";
 import {dark} from "@clerk/themes";
 import "./globals.css";
+import { ThemeProvider } from "@/providers/theme.provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,10 +18,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
+    <html suppressHydrationWarning>
       <body>
         <ClerkProvider>
-            {children}    
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            {children}  
+          </ThemeProvider>  
         </ClerkProvider>
       </body>
     </html>

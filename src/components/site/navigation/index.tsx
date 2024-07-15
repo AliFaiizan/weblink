@@ -1,4 +1,5 @@
 //import { ModeToggle } from '@/components/global/mode-toggle'
+import { ModeToggle } from '@/components/global/mode-toggle'
 import { UserButton } from '@clerk/nextjs'
 import { User } from '@clerk/nextjs/server'
 import Image from 'next/image'
@@ -11,18 +12,18 @@ type Props = {
 
 const Navigation = ({ user }: Props) => {
   return (
-    <div className="fixed top-0 right-0 left-0 p-4 flex items-center justify-between z-10">
+    <div className="fixed top-0 right-0 left-0 p-3 flex items-center justify-between z-10">
       <aside className="flex items-center gap-2">
         <Image
           src={'./assets/weblink-logo.svg'}
           width={40}
           height={40}
-          alt="plur logo"
+          alt="weblink-logo"
         />
         <span className="text-xl font-bold"> WebLink.</span>
       </aside>
       <nav className="hidden md:block absolute left-[50%] top-[50%] transform translate-x-[-50%] translate-y-[-50%]">
-        <ul className="flex items-center justify-center gap-8">
+        <ul className="flex items-center justify-center gap-8 p-4">
           <Link href={'#'}>Pricing</Link>
           <Link href={'#'}>About</Link>
           <Link href={'#'}>Documentation</Link>
@@ -37,6 +38,7 @@ const Navigation = ({ user }: Props) => {
           Login
         </Link>
         <UserButton />
+        <ModeToggle />
       </aside>
     </div>
   )
