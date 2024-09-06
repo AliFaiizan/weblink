@@ -2,12 +2,12 @@ import { RedirectToSignIn } from '@clerk/nextjs';
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 import { NextResponse } from 'next/server';
 
-const isProtectedRoute = createRouteMatcher(["/subaccount"]);
+const isProtectedRoute = createRouteMatcher(["/agency","/subaccount"]);
 
-export default clerkMiddleware((auth, req) => {
+export default clerkMiddleware(async(auth, req) => {
 
   if(isProtectedRoute(req)){
-    auth().protect()
+    await auth().protect()
   }
  
   const url = req.nextUrl;
@@ -31,7 +31,7 @@ export default clerkMiddleware((auth, req) => {
     return NextResponse.rewrite(new URL('/site', req.url));
   }
 
-  if(url.pathname.startsWith('/agency') && url.pathname.startsWith('/subaccount')){
+  if(url.pathname.startsWith('/agency') || url.pathname.startsWith('/subaccount')){
     return NextResponse.rewrite(new URL(`${pathWithSearchParams}`, req.url));
   }
 

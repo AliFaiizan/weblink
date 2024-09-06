@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const inter = DM_Sans({ subsets: ["latin"] });
+const font = DM_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Weblink",
@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={font.className}>
        {children}
       </body>
     </html>
