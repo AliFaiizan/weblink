@@ -28,7 +28,8 @@ export const getAuthUserDetails = async () => {
             Permissions:true
         },
     });
-
+    
+    console.log(userData);
     return userData;
 };
 

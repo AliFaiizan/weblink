@@ -19,9 +19,8 @@ export default clerkMiddleware(async(auth, req) => {
   //if the subdomain exists
   
   const customSubdomain = hostname?.split(`${process.env.NEXT_PUBLIC_DOMAIN}`).filter(Boolean)[0];
-  console.log("naem",customSubdomain);
   if(customSubdomain){
-    return NextResponse.rewrite(new URL(`/agency/${customSubdomain}${pathWithSearchParams}`, req.url));  
+    return NextResponse.rewrite(new URL(`${customSubdomain}${pathWithSearchParams}`, req.url));  
   }
   if(url.pathname === '/sign-in' || url.pathname === '/sign-up'){
     return NextResponse.redirect(new URL(`/agency/sign-in`, req.url));

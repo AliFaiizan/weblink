@@ -13,9 +13,6 @@ const layout = ({children}:{children:React.ReactNode}) => {
             {children}
           </main>
         </ThemeProvider>  
-     
-       
-      
     </ClerkProvider>
     
   )
