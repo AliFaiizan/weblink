@@ -38,7 +38,6 @@ const page = async ({searchParams}:pageProps) => {
   }else{
     return <div>Not authroized</div>
   }
-  console.log(user?.email)
   return (
     <div>{user?.email}</div>
   )
