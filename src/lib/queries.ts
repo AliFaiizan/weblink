@@ -29,7 +29,7 @@ export const getAuthUserDetails = async () => {
         },
     });
     
-    console.log(userData);
+    console.log("user",userData);
     return userData;
 };
 

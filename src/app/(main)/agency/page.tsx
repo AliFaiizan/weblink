@@ -1,4 +1,6 @@
+import AgencyDetails from '@/components/forms/agency-details';
 import { getAuthUserDetails, verifyAndAcceptInvitation } from '@/lib/queries'
+import { currentUser } from '@clerk/nextjs/server';
 import { Plan } from '@prisma/client';
 import { redirect } from 'next/navigation';
 import React from 'react'
@@ -16,7 +18,7 @@ const page = async ({searchParams}:pageProps) => {
   
   const agencyId = await verifyAndAcceptInvitation();
   const user = await getAuthUserDetails(); // get current authroized user
-
+  console.log(agencyId)
   if(agencyId){
     if(user?.role=== "SUBACCOUNT_GUEST" || user?.role=== "SUBACCOUNT_USER"){
       return redirect(`/subaccount`);
@@ -35,11 +37,20 @@ const page = async ({searchParams}:pageProps) => {
       }
     }else return redirect(`/agency/${agencyId}`);
 
-  }else{
-    return <div>Not authroized</div>
+  }else{ 
+     const authUser = await currentUser();
+     return (
+       <div className="flex justify-center items-center mt-4">
+         <div className="max-2-[850px] border-[1px] p-4 rounded-xl">
+           <h1 className="text-2xl font-bold">Create An Agency</h1>
+           <p className="text-gray-500">
+             You are logged in as {authUser?.firstName} {authUser?.lastName}
+           </p>
+           <AgencyDetails data={undefined} />
+         </div>
+       </div>
+     );
   }
-  return (
-    <div>{user?.email}</div>
-  )
+
 }
 export default page
