@@ -8,7 +8,7 @@ const authenticateUser = () => {
   if (!user) throw new Error("Unauthorized");
   return { user };
 }
-
+export type OurFileRouterKeys = keyof typeof ourFileRouter;
 export const ourFileRouter = {
     subaccountLogo: f({
         image:{
